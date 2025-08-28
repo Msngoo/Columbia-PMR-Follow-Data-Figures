@@ -1,0 +1,12 @@
+[project]
+name = "columbiapmr-06242025"
+version = "0.1.0"
+description = "Jupyter Notebooks for creating figures for 4 workshop Follow Data Manuscript"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "ipykernel>=6.29.5",
+    "notebook>=7.4.3",
+    "openpyxl>=3.1.5",
+    "seaborn>=0.13.2",
+]
