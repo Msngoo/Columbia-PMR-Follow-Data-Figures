@@ -84,7 +84,7 @@ for workshop in sig_info.keys():
 
 ax.set_xlabel("Date")
 ax.set_ylabel("Mean Likert Score (1-5)")
-ax.set_title("Figure 1. Knowledge and Interest Retention from Post-Workshop to 3-Month Follow-Up", 
+ax.set_title("Figure 1. Knowledge and Interest Retention from Post-Workshop to Follow-Up", 
              fontweight='bold')
 ax.set_ylim(1, 5)
 
@@ -128,7 +128,7 @@ ax.text(0.98, 0.02, "▲ Significant increase (p<0.05)\n▼ Significant decrease
         bbox=dict(boxstyle="round,pad=0.3", facecolor="white", edgecolor="gray", alpha=0.8))
 
 plt.tight_layout()
-plt.savefig("Fig1_retention_line.png", bbox_inches="tight")
+plt.savefig("Manuscript/Fig1_retention_line.png", bbox_inches="tight")
 plt.show()
 
 
@@ -191,7 +191,7 @@ ax.set_axisbelow(True)
 
 # Save with tight layout
 plt.tight_layout()
-plt.savefig("Fig2_engagement.png", dpi=300, bbox_inches="tight")
+plt.savefig("Manuscript/Fig2_engagement.png", dpi=300, bbox_inches="tight")
 plt.show()
 
 
@@ -254,7 +254,7 @@ ax.set_axisbelow(True)
 
 # Save with tight layout
 plt.tight_layout()
-plt.savefig("Fig3_mentorship.png", dpi=300, bbox_inches="tight")
+plt.savefig("Manuscript/Fig3_mentorship.png", dpi=300, bbox_inches="tight")
 plt.show()
 
 
@@ -267,7 +267,7 @@ for workshop in ["Emergency Medicine", "Orthopedics", "PM&R", "General Surgery"]
     data = retention_df[retention_df["Workshop"] == workshop]["Score"].values
     grouped_data.extend([
         {"Specialty": workshop, "Time": "Post-Workshop", "Score": data[0]},
-        {"Specialty": workshop, "Time": "3-Month Follow-Up", "Score": data[1]}
+        {"Specialty": workshop, "Time": "Follow-Up", "Score": data[1]}
     ])
 
 grouped_df = pd.DataFrame(grouped_data)
@@ -282,14 +282,14 @@ x = range(len(specialties))
 width = 0.35
 
 post_scores = grouped_df[grouped_df["Time"] == "Post-Workshop"]["Score"].values
-fu_scores = grouped_df[grouped_df["Time"] == "3-Month Follow-Up"]["Score"].values
+fu_scores = grouped_df[grouped_df["Time"] == "Follow-Up"]["Score"].values
 
 bars1 = ax.barh([i - width/2 for i in x], post_scores, width, label='Post-Workshop')
-bars2 = ax.barh([i + width/2 for i in x], fu_scores, width, label='3-Month Follow-Up')
+bars2 = ax.barh([i + width/2 for i in x], fu_scores, width, label='Follow-Up')
 
 ax.set_xlabel("Likert Scale")
 ax.set_ylabel("Specialty")
-ax.set_title("Figure 1. Knowledge and Interest Retention from Post-Workshop to 3-Month Follow-Up", fontweight='bold')
+ax.set_title("Figure 1. Knowledge and Interest Retention from Post-Workshop to Follow-Up", fontweight='bold')
 ax.set_xlim(0, 4.5)  # Extended slightly for asterisk space
 ax.set_xticks([0, 1, 2, 3, 4])
 ax.set_yticks(x)
@@ -316,7 +316,7 @@ ax.text(0.99, -0.12, "* Significant change (p < 0.05)",
 # Adjust layout to prevent legend cutoff
 plt.tight_layout()
 plt.subplots_adjust(right=0.82)  # Make room for external legend
-plt.savefig("Fig1_retention_grouped_bars.png", bbox_inches="tight")
+plt.savefig("Manuscript/Fig1_retention_grouped_bars.png", bbox_inches="tight")
 plt.show()
 
 
@@ -415,7 +415,7 @@ workshops = {
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
 
 # MANUALLY create the main title using fig.text for precise control
-fig.text(0.43, 0.96, 'Figure 1: Mean attitude scores immediately post-workshop compared to 3-month follow-up, stratified by specialty',
+fig.text(0.43, 0.96, 'Figure 1: Mean attitude scores immediately post-workshop compared to follow-up, stratified by specialty',
          ha='center', va='top', fontsize=14, fontweight='bold')
 
 # Flatten axes for easier iteration
@@ -470,7 +470,7 @@ for idx, (workshop_name, workshop_info) in enumerate(workshops.items()):
 from matplotlib.lines import Line2D
 legend_elements = [
     Line2D([0], [0], color='#9370DB', marker='o', linestyle='-', markersize=6, linewidth=2, label='Post-Workshop'),
-    Line2D([0], [0], color='#4169E1', marker='o', linestyle='-', markersize=6, linewidth=2, label='3-Month Follow-Up'),
+    Line2D([0], [0], color='#4169E1', marker='o', linestyle='-', markersize=6, linewidth=2, label='Follow-Up'),
     Line2D([0], [0], marker='^', color='red', linestyle='None', markersize=8, label='Significant Increase (*)'),
     Line2D([0], [0], marker='v', color='red', linestyle='None', markersize=8, label='Significant Decrease (*)')
 ]
@@ -495,7 +495,7 @@ plt.subplots_adjust(
 )
 
 # Save figure
-plt.savefig("Fig1_attitude_scores_by_specialty_bar.png", dpi=300, bbox_inches="tight")
+plt.savefig("Manuscript/Fig1_attitude_scores_by_specialty_bars.png", dpi=300, bbox_inches="tight")
 plt.show()
 
 
@@ -603,7 +603,7 @@ fig, axes = plt.subplots(2, 2, figsize=(14, 10))
 axes = axes.flatten()
 
 # MANUALLY create the main title using fig.text for precise control
-fig.text(0.43, 0.96, 'Figure 1: Mean attitude scores immediately post-workshop compared to 3-month follow-up, stratified by specialty',
+fig.text(0.43, 0.96, 'Figure 1: Mean attitude scores immediately post-workshop compared to follow-up, stratified by specialty',
          ha='center', va='top', fontsize=14, fontweight='bold')
 
 # Process each workshop
@@ -676,7 +676,7 @@ for idx, (workshop_name, workshop_info) in enumerate(workshops.items()):
 from matplotlib.lines import Line2D
 legend_elements = [
     Line2D([0], [0], color='#9370DB', marker='o', linestyle='-', markersize=6, linewidth=2, label='Post-Workshop'),
-    Line2D([0], [0], color='#4169E1', marker='o', linestyle='-', markersize=6, linewidth=2, label='3-Month Follow-Up'),
+    Line2D([0], [0], color='#4169E1', marker='o', linestyle='-', markersize=6, linewidth=2, label='Follow-Up'),
     Line2D([0], [0], marker='^', color='red', linestyle='None', markersize=8, label='Significant Increase (*)'),
     Line2D([0], [0], marker='v', color='red', linestyle='None', markersize=8, label='Significant Decrease (*)')
 ]
@@ -701,5 +701,288 @@ plt.subplots_adjust(
 )
 
 # Save figure
-plt.savefig("Fig1_attitude_scores_line_graph.png", dpi=300, bbox_inches="tight")
+plt.savefig("Manuscript/Fig1_attitude_scores_line_graph.png", dpi=300, bbox_inches="tight")
+plt.show()
+
+
+
+""" Cell 8: Figure 2 (2 subplots - Combined preferences of of Figure 2 & 3) """
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+import scienceplots
+
+# Set publication style
+plt.style.use(['science', 'no-latex', 'bright'])
+plt.rcParams.update({
+    'font.family': 'Times New Roman',
+    'font.size': 10,
+    'figure.dpi': 300,
+    'savefig.dpi': 300
+})
+
+# Define engagement data
+engagement_data = {
+    "Hands-on/Clinical Activities": 57,
+    "Networking": 48,
+    "Research": 46,
+    "Case-based Learning": 41,
+    "Peer-led Discussion": 16,
+    "Service Learning": 3
+}
+
+# Define mentorship data
+mentorship_data = {
+    "Shadowing": 61,
+    "One-on-one Mentorship": 50,
+    "Research Mentorship": 47,
+    "Networking Events": 41,
+    "Workshop Events": 39,
+    "Group Mentorship": 25
+}
+
+# Create DataFrames
+engagement_df = pd.DataFrame([
+    {"Method": method, "Percentage": round((count/65)*100)} 
+    for method, count in engagement_data.items()
+])
+engagement_df = engagement_df.sort_values("Percentage", ascending=True)
+
+mentorship_df = pd.DataFrame([
+    {"Format": format_name, "Percentage": round((count/65)*100)}
+    for format_name, count in mentorship_data.items()
+])
+mentorship_df = mentorship_df.sort_values("Percentage", ascending=True)
+
+# Create figure with 1x2 subplots
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+# Left subplot - Engagement Formats
+ax1 = axes[0]
+sns.barplot(
+    data=engagement_df,
+    y="Method",
+    x="Percentage",
+    ax=ax1,
+    color="#9370DB",  # Purple color matching mean post-workshop
+    saturation=0.8,
+    edgecolor="black",
+    linewidth=0.5
+)
+
+# Format left subplot
+ax1.set_xlabel("Percentage of Students (%)", fontsize=10)
+ax1.set_ylabel("", fontsize=10)
+ax1.set_title("A. Preferred Engagement Formats for Future Workshops", 
+             fontsize=10, fontweight='bold', pad=10)
+ax1.tick_params(axis='both', labelsize=10)
+ax1.set_xlim(0, 100)
+
+# Add value labels for engagement
+for i, (idx, row) in enumerate(engagement_df.iterrows()):
+    ax1.text(row['Percentage'] + 1, i, f"{int(row['Percentage'])}%", 
+            va='center', fontsize=10)
+
+ax1.grid(axis='x', alpha=0.3, linestyle='--', linewidth=0.5)
+ax1.set_axisbelow(True)
+
+# Right subplot - Mentorship Preferences
+ax2 = axes[1]
+sns.barplot(
+    data=mentorship_df,
+    y="Format",
+    x="Percentage",
+    ax=ax2,
+    color="#4169E1",  # Blue color matching mean 3-month follow-up
+    saturation=0.8,
+    edgecolor="black",
+    linewidth=0.5
+)
+
+# Format right subplot
+ax2.set_xlabel("Percentage of Students (%)", fontsize=10)
+ax2.set_ylabel("", fontsize=10)
+ax2.set_title("B. Mentorship Preferences Among Respondents", 
+             fontsize=10, fontweight='bold', pad=10)
+ax2.tick_params(axis='both', labelsize=10)
+ax2.set_xlim(0, 100)
+
+# Add value labels for mentorship
+for i, (idx, row) in enumerate(mentorship_df.iterrows()):
+    ax2.text(row['Percentage'] + 1, i, f"{int(row['Percentage'])}%", 
+            va='center', fontsize=10)
+
+ax2.grid(axis='x', alpha=0.3, linestyle='--', linewidth=0.5)
+ax2.set_axisbelow(True)
+
+# Remove top and right spines for both subplots
+sns.despine(ax=ax1)
+sns.despine(ax=ax2)
+
+# Create legend elements
+from matplotlib.patches import Patch
+legend_elements = [
+    Patch(facecolor='#9370DB', edgecolor='black', linewidth=0.5, label='Engagement Formats'),
+    Patch(facecolor='#4169E1', edgecolor='black', linewidth=0.5, label='Mentorship Preferences')
+]
+
+# Position legend in top right corner (non-overlapping)
+legend = fig.legend(handles=legend_elements, 
+                   loc='upper right',
+                   bbox_to_anchor=(0.98, 0.95),
+                   fontsize=9,
+                   frameon=True,
+                   fancybox=True,
+                   shadow=False,
+                   title='Legend',
+                   title_fontsize=10)
+
+# Style legend frame
+legend.get_frame().set_edgecolor('gray')
+legend.get_frame().set_linewidth(0.8)
+
+# Add main title
+fig.suptitle("Figure 2. Student Preferences for Future Engagement and Mentorship Opportunities (n=65)", 
+             fontsize=12, fontweight='bold', y=0.98)
+
+# Adjust layout to accommodate legend
+plt.tight_layout()
+plt.subplots_adjust(top=0.88, right=0.85)
+
+# Save figure
+plt.savefig("Manuscript/Fig2_combined_preferences_2in1.png", dpi=300, bbox_inches="tight")
+plt.show()
+
+
+
+""" Cell 9: Figure 2 (1 subplot - Combined preferences of Figure 2 & 3) """
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+import scienceplots
+
+# Set publication style
+plt.style.use(['science', 'no-latex', 'bright'])
+plt.rcParams.update({
+    'font.family': 'Times New Roman',
+    'font.size': 10,
+    'figure.dpi': 300,
+    'savefig.dpi': 300
+})
+
+# Define engagement data
+engagement_data = {
+    "Hands-on/Clinical Activities": 57,
+    "Networking": 48,
+    "Research": 46,
+    "Case-based Learning": 41,
+    "Peer-led Discussion": 16,
+    "Service Learning": 3
+}
+
+# Define mentorship data
+mentorship_data = {
+    "Shadowing": 61,
+    "One-on-one Mentorship": 50,
+    "Research Mentorship": 47,
+    "Networking Events": 41,
+    "Workshop Events": 39,
+    "Group Mentorship": 25
+}
+
+# Combine data into single DataFrame
+combined_data = []
+
+# Add engagement data
+for method, count in engagement_data.items():
+    combined_data.append({
+        "Category": method,
+        "Percentage": round((count/65)*100),
+        "Type": "Engagement Format"
+    })
+
+# Add mentorship data
+for format_name, count in mentorship_data.items():
+    combined_data.append({
+        "Category": format_name,
+        "Percentage": round((count/65)*100),
+        "Type": "Mentorship Preference"
+    })
+
+# Create DataFrame and sort from greatest to least (ascending=False)
+# This will put the highest percentages at bottom and lowest at top
+combined_df = pd.DataFrame(combined_data)
+combined_df = combined_df.sort_values("Percentage", ascending=False)
+
+# Create figure with extra width for external legend
+fig, ax = plt.subplots(figsize=(12, 8))
+
+# Create colors list based on type
+colors = ['#9370DB' if row['Type'] == 'Engagement Format' else '#4169E1' 
+          for _, row in combined_df.iterrows()]
+
+# Create horizontal bar plot
+bars = ax.barh(range(len(combined_df)), combined_df['Percentage'], 
+               color=colors, edgecolor='black', linewidth=0.5)
+
+# Format plot
+ax.set_xlabel("Percentage of Students (%)", fontsize=10)
+ax.set_ylabel("", fontsize=10)
+ax.set_title("Figure 2. Student Preferences for Future Engagement and Mentorship Opportunities (n=65)", 
+             fontsize=12, fontweight='bold', pad=20)
+ax.tick_params(axis='both', labelsize=10)
+ax.set_xlim(0, 100)
+
+# Set y-axis labels
+ax.set_yticks(range(len(combined_df)))
+ax.set_yticklabels(combined_df['Category'])
+
+# Add percentage labels
+for i, (_, row) in enumerate(combined_df.iterrows()):
+    ax.text(row['Percentage'] + 1, i, f"{int(row['Percentage'])}%", 
+            va='center', fontsize=10)
+
+# Add grid
+ax.grid(axis='x', alpha=0.3, linestyle='--', linewidth=0.5)
+ax.set_axisbelow(True)
+
+# Create legend elements
+from matplotlib.patches import Patch
+legend_elements = [
+    Patch(facecolor='#9370DB', edgecolor='black', linewidth=0.5, label='Engagement Formats'),
+    Patch(facecolor='#4169E1', edgecolor='black', linewidth=0.5, label='Mentorship Preferences')
+]
+
+# Position legend outside the plot area (similar to Figure 1)
+legend = fig.legend(handles=legend_elements, 
+                   loc='upper left',
+                   bbox_to_anchor=(0.82, 0.95),  # Position in the reserved right space
+                   fontsize=9,
+                   frameon=True,
+                   fancybox=True,
+                   shadow=False,
+                   title='Legend',
+                   title_fontsize=10)
+
+# Style legend frame to match Figure 1
+legend.get_frame().set_edgecolor('gray')
+legend.get_frame().set_linewidth(0.8)
+
+# Remove spines
+sns.despine()
+
+# Adjust layout to create space for external legend (similar to Figure 1)
+plt.subplots_adjust(
+    left=0.08,
+    right=0.78,  # Squeeze plot to the left, creating space for legend
+    top=0.90,    # Create space for title
+    bottom=0.08  # Space at bottom
+)
+
+# Save figure in manuscript folder
+plt.savefig("Manuscript/Fig2_combined_preferences_single_plot.png", dpi=300, bbox_inches="tight")
 plt.show()
